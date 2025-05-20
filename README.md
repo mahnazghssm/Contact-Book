@@ -1,103 +1,86 @@
-# Contact Book Application
-A simple console-based application written in Python for managing contact information, such as names, phone numbers, and email addresses. The application allows you to add, update, view, and delete contacts interactively.
+# 📒 Contact Book Application
 
-## Features
-•	Add a new contact with a name, phone number, and optional email.
-•	View a list of all saved contacts.
-•	Update existing contact details, including phone numbers and emails.
-•	Delete contacts by name.
-•	Interactive console-based user interface.
+A simple, console-based contact book application written in Python. This tool allows you to add, update, view, and delete contact details such as names, phone numbers, and optional email addresses — all through an interactive menu.
 
-## How to Use
+
+
+## ✨ Features
+
+	•	✅ Add new contacts with name, phone number, and optional email.
+	•	📋 View all saved contacts in a clean format.
+	•	✏️ Update phone numbers or emails for existing contacts.
+	•	🗑️ Delete contacts by name.
+	•	🧠 Input validation with error handling.
+	•	📦 Uses defaultdict for dynamic dictionary handling.
+
+## 🛠️ How to Use
 
 1. Clone the Repository:
 ```
-git clone https://github.com/yourusername/contact-book.git
+git clone https://github.com/mahnazghassemi/contact-book.git
 cd contact-book
 ```
 2.	Run the Application:
-To run the contact book, simply execute the following command:
+
+	To run the contact book, simply execute the following command:
 ```
-python contact_book.py
+	python contact_book.py
 ```
-3.	Menu Options:
+## 📜 Menu Options
 When you run the program, you will see the following options:
 
-Welcome to contact book application
-
-1. Add contact
-2. Edit contact
-3. View contacts
-4. Delete contact
+📒 Welcome to the Contact Book Application!
+1. Add Contact
+2. Edit Contact
+3. View Contact
+4. Delete Contact
 5. Quit
 
-	•	Option 1: Add a contact
-
-	•	Input the contact’s name, phone number, and an optional email.
-
-	•	If the contact already exists, the system will notify you.
-
-	•	Option 2: Edit a contact
-
-	•	Update the phone number and/or email for an existing contact.
-
-	•	Leave the field blank if you don’t want to update it.
-
-	•	Option 3: View contacts
-
-	•	Display a list of all the contacts saved in the system.
-
-	•	Option 4: Delete a contact
-
-	•	Delete a contact from the system by entering the contact’s name.
-
-	•	Option 5: Quit
-
-	•	Exit the application.
+	•	1. Add Contact – Input name, phone, and optional email. Prevents duplicates.
+	•	2. Edit Contact – Update phone/email. Leave blank to keep unchanged.
+	•	3. View Contact – Displays a list of all saved contacts.
+	•	4. Delete Contact – Removes a contact by name.
+	•	5. Quit – Exits the application.
 
 
+## 📂 Code Structure
+•	ContactBook class manages all contact records using a defaultdict.
 
-## Code Overview
+•	Each contact is stored as a nested dictionary:
 
-The application is built with Python and consists of two main parts:
 ```
-1.	ContactBook Class:
-	•	Manages all contacts using a dictionary.
-	•	Functions for adding, updating, viewing, and deleting contacts.
-
-2.	Interactive Menu:
-	•	Displays a menu to the user and handles input to trigger the correct actions.
+{
+  "Alice": {
+      "phone": "12345",
+      "email": "alice@example.com"
+  }
+}
 ```
-ContactBook Class
+## 🧠 Key Methods
 
-	•	add_contact(name, phone, email=None): Adds a new contact to the contact book.
-	•	view_contact(): Displays all contacts in the book.
-	•	update_contact(name, phone=None, email=None): Updates an existing contact’s phone or email.
-	•	delete_contact(name): Deletes a contact by name.
-    
+| Method | Description |
+|--------|-------------|
+| add_contact(name, phone, email=None) | Adds a new contact with the given name, phone, and optional email. Prevents duplicates. |
+| view_contact() | Displays all saved contacts in a clean and formatted way. |
+| update_contact(name, phone=None, email=None) | Updates the phone number and/or email of an existing contact. |
+| delete_contact(name) | Deletes the contact with the specified name if it exists. |
 
 
-## Example Code
+## 📌 Example Usage
 
-### Example of adding a contact:
 book = ContactBook()
+
 book.add_contact("Alice", "12345", "alice@example.com")
-
-Example of viewing all contacts:
 book.view_contact()
-
-### Example of updating a contact:
 book.update_contact("Alice", phone="54321")
-
-### Example of deleting a contact:
 book.delete_contact("Alice")
 
-## Requirements
-•	Python 3.x
+## 🐍 Requirements
 
-No external libraries are required.
+•	Python 3.7 or higher
 
-## License
-This project is licensed under the MIT License. Feel free to use and modify it as per your needs.
+•	No external dependencies required (defaultdict is from the standard library)
 
-This README.md explains how to use the contact book application, how to run it, and gives an overview of the main features and code structure. You can modify it further to suit any additional features you may want to include.
+## 📄 License
+
+This project is licensed under the MIT License. Feel free to use, modify, or distribute it for educational or personal purposes.
