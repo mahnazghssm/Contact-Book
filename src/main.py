@@ -1,130 +1,115 @@
- from collections import defaultdict
+from collections import defaultdict
 
-# Define the ContactBook class
 class ContactBook:
-    # Constructor method for initializing the contact book
-    def __init__(self):
-        # Type: contact -> defaultdict[str, dict]
-        # Using defaultdict to store contacts, where each key is a name (string)
-        # and the value is a dictionary containing 'phone' and 'email'
-        self.contact = defaultdict(dict)
+    """A simple contact book application that manages contact information."""
 
-    # Method to add a contact to the contact book
-    def add_contact(self, name: str, phone: str, email: str = None) -> None:
+    def __init__(self) -> None:
+        # Using defaultdict to automatically create nested dictionaries
+        self.contacts: dict[str, dict[str, str | None]] = defaultdict(dict)
+
+    def add_contact(self, name: str, phone: str, email: str | None = None) -> None:
         """
         Adds a new contact to the contact book.
-        
-        Parameters:
-        name: str -> The name of the contact.
-        phone: str -> The phone number of the contact.
-        email: str (optional) -> The email of the contact (defaults to None).
-        """
-        if name in self.contact:
-            print("Contact already exists!")  # Expression: print message if contact exists
-            return
-        
-        # Type: contact[name] -> dict
-        # Expression: Set the contact's phone and email in the dictionary.
-        self.contact[name] = {}  # Initialize an empty dictionary for the contact
-        self.contact[name]["phone"] = phone  # Assign the phone to the contact
-        self.contact[name]["email"] = email  # Assign the email (could be None)
 
-    # Method to view all contacts in the contact book
+        :param name: The name of the contact
+        :param phone: The phone number of the contact
+        :param email: Optional email address
+        """
+        if name in self.contacts:
+            print("❌ Contact already exists.")
+            return
+
+        self.contacts[name]["phone"] = phone
+        self.contacts[name]["email"] = email
+        print(f"✅ Contact '{name}' added successfully.")
+
     def view_contact(self) -> None:
         """
-        Displays all the contacts stored in the contact book.
+        Displays all contacts in the contact book.
         """
-        # Type: name -> str, info -> dict
-        # Expression: Loop through the contacts and print each one.
-        for name, info in self.contact.items():
-            print(f"Name: {name}")  # Print the contact's name
-            print(f"Phone: {info['phone']}")  # Print the contact's phone
-            print(f"Email: {info['email']}")  # Print the contact's email
-            print("_" * 50)  # Print a divider line for readability
+        if not self.contacts:
+            print("📭 No contacts found.")
+            return
 
-    # Method to update an existing contact
-    def update_contact(self, name: str, phone: str = None, email: str = None) -> None:
-        """
-        Updates the phone or email of an existing contact.
-        
-        Parameters:
-        name: str -> The name of the contact to update.
-        phone: str (optional) -> The new phone number (optional, defaults to None).
-        email: str (optional) -> The new email address (optional, defaults to None).
-        """
-        if name in self.contact:
-            # Expression: Update the phone if a new one is provided
-            if phone:
-                self.contact[name]["phone"] = phone
-            # Expression: Update the email if a new one is provided
-            if email:
-                self.contact[name]["email"] = email
-                
-            print("Contact updated successfully!")  # Print success message
-        else:
-            print("Contact doesn't exist!")  # Print message if contact is not found
+        for name, info in self.contacts.items():
+            print(f"📇 Name: {name}")
+            print(f"📞 Phone: {info['phone']}")
+            print(f"📧 Email: {info['email']}")
+            print("-" * 40)
 
-    # Method to delete a contact from the contact book
     def delete_contact(self, name: str) -> None:
         """
-        Deletes a contact from the contact book.
-        
-        Parameters:
-        name: str -> The name of the contact to delete.
+        Deletes a contact by name.
+
+        :param name: The name of the contact to delete
         """
-        if name in self.contact:
-            del self.contact[name]  # Expression: Remove the contact from the dictionary
-            print("Contact deleted.")  # Print success message
+        if name in self.contacts:
+            del self.contacts[name]
+            print(f"🗑️ Contact '{name}' deleted successfully.")
         else:
-            print("Contact not found.")  # Print message if contact is not found
+            print(f"⚠️ Contact '{name}' does not exist.")
+
+    def update_contact(self, name: str, phone: str | None = None, email: str | None = None) -> None:
+        """
+        Updates a contact's phone and/or email.
+
+        :param name: The name of the contact to update
+        :param phone: New phone number (optional)
+        :param email: New email address (optional)
+        """
+        if name in self.contacts:
+            if phone:
+                self.contacts[name]["phone"] = phone
+            if email:
+                self.contacts[name]["email"] = email
+            print("✅ Contact updated successfully.")
+        else:
+            print("⚠️ Contact does not exist.")
 
 
 if __name__ == "__main__":
     book = ContactBook()
 
-while True:
-    # Display the menu to the user
-    print("\n\n Welcome to contact book application")
-    print("1. add contact")
-    print("2. edit contact")
-    print("3. view contact")
-    print("4. delete contact")
-    print("5. Quit")
+    while True:
+        # Display the menu
+        print("\n📒 Welcome to the Contact Book Application!")
+        print("1. Add Contact")
+        print("2. Edit Contact")
+        print("3. View Contact")
+        print("4. Delete Contact")
+        print("5. Quit")
 
-    # Get the user's choice
-    user_choice = input("please choose a option: ")
+        # Input handling with error catch
+        try:
+            user_choice: int = int(input("👉 Please choose an option (1-5): "))
+        except ValueError:
+            print("❌ Invalid input. Please enter a number between 1 and 5.")
+            continue
 
-    # Quit the application if the user chooses option 5
-    if user_choice == "5":
-        break
+        # Handle each menu option
+        if user_choice == 5:
+            print("👋 Goodbye!")
+            break
 
-    # Add a new contact
-    elif user_choice == "1":
-        name = input("please enter contact name: ").strip()
-        phone = input("please enter contact phone: ").strip()
-        email = input("please enter contact email: ").strip()
+        elif user_choice == 1:
+            name = input("👤 Enter contact name: ")
+            phone = input("📞 Enter contact phone: ")
+            email = input("📧 Enter contact email (optional): ")
+            book.add_contact(name, phone, email)
 
-        book.add_contact(name, phone, email)
+        elif user_choice == 2:
+            name = input("👤 Enter contact name to edit: ")
+            phone = input("📞 Enter new phone (leave blank to skip): ")
+            email = input("📧 Enter new email (leave blank to skip): ")
+            book.update_contact(name, phone or None, email or None)
 
-    # Update an existing contact
-    elif user_choice == "2":
-        name = input("please enter contact name: ").strip()
-        phone = input("please enter contact phone (leave blank to keep the same): ").strip()
-        email = input("please enter contact email (leave blank to keep the same): ").strip()
+        elif user_choice == 3:
+            print("\n📋 List of Contacts:")
+            book.view_contact()
 
-        # Use phone/email only if the user provided new values
-        book.update_contact(name, phone if phone else None, email if email else None)
+        elif user_choice == 4:
+            name = input("👤 Enter contact name to delete: ")
+            book.delete_contact(name)
 
-    # View all contacts
-    elif user_choice == "3":
-        print("\n\n List of contacts: ")
-        book.view_contact()
-
-    # Delete a contact
-    elif user_choice == "4":
-        name = input("\nEnter contact name: ").strip()
-        book.delete_contact(name)
-
-    # Handle invalid options
-    else:
-        print("Invalid option. Please try again.")
+        else:
+            print("❌ Invalid option. Please choose between 1 and 5.")
