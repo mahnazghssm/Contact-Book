@@ -1,86 +1,110 @@
-# 📒 Contact Book Application
+# Contact Book
 
-A simple, console-based contact book application written in Python. This tool allows you to add, update, view, and delete contact details such as names, phone numbers, and optional email addresses — all through an interactive menu.
+A simple console-based Contact Book application written in Python.
 
+The application allows users to add, view, edit, and delete contacts. Each contact includes a name, phone number, email, and address.
 
+## CRUD Operations
 
-## ✨ Features
+CRUD stands for Create, Read, Update, and Delete.
 
-	•	✅ Add new contacts with name, phone number, and optional email.
-	•	📋 View all saved contacts in a clean format.
-	•	✏️ Update phone numbers or emails for existing contacts.
-	•	🗑️ Delete contacts by name.
-	•	🧠 Input validation with error handling.
-	•	📦 Uses defaultdict for dynamic dictionary handling.
+In this project:
 
-## 🛠️ How to Use
+- **Create**: Add a new contact
+- **Read**: View saved contacts
+- **Update**: Edit contact information
+- **Delete**: Delete a contact
 
-1. Clone the Repository:
+## Project Structure
+
+```text
+.
+├── README.md
+├── .gitignore
+└── src
+    └── main.py
 ```
-git clone https://github.com/mahnazghassemi/contact-book.git
-cd contact-book
-```
-2.	Run the Application:
 
-	To run the contact book, simply execute the following command:
-```
-	python contact_book.py
-```
-## 📜 Menu Options
-When you run the program, you will see the following options:
+- `README.md`: Project documentation
+- `.gitignore`: Files and folders ignored by Git
+- `src/main.py`: Contains the `ContactBook` class and the main application
 
-📒 Welcome to the Contact Book Application!
-1. Add Contact
-2. Edit Contact
-3. View Contact
-4. Delete Contact
-5. Quit
+## ContactBook Class
 
-	•	1. Add Contact – Input name, phone, and optional email. Prevents duplicates.
-	•	2. Edit Contact – Update phone/email. Leave blank to keep unchanged.
-	•	3. View Contact – Displays a list of all saved contacts.
-	•	4. Delete Contact – Removes a contact by name.
-	•	5. Quit – Exits the application.
+The `ContactBook` class manages contacts using a Python dictionary.
 
+Each contact contains a phone number, email, and address, and is stored using the contact's name as the key.
 
-## 📂 Code Structure
-•	ContactBook class manages all contact records using a defaultdict.
-
-•	Each contact is stored as a nested dictionary:
-
-```
+```python
 {
-  "Alice": {
-      "phone": "12345",
-      "email": "alice@example.com"
-  }
+    "Alice": {
+        "phone": "12345",
+        "email": "alice@example.com",
+        "address": "New York"
+    }
 }
 ```
-## 🧠 Key Methods
+
+The class includes four main methods:
 
 | Method | Description |
-|--------|-------------|
-| add_contact(name, phone, email=None) | Adds a new contact with the given name, phone, and optional email. Prevents duplicates. |
-| view_contact() | Displays all saved contacts in a clean and formatted way. |
-| update_contact(name, phone=None, email=None) | Updates the phone number and/or email of an existing contact. |
-| delete_contact(name) | Deletes the contact with the specified name if it exists. |
+|---|---|
+| `add_contact()` | Adds a new contact |
+| `view_contacts()` | Displays all contacts |
+| `edit_contact()` | Updates contact information |
+| `delete_contact()` | Deletes a contact |
 
+## User Interface
 
-## 📌 Example Usage
+The application uses a simple console-based menu:
 
-book = ContactBook()
+```text
+--- Contact Book Application ---
 
-book.add_contact("Alice", "12345", "alice@example.com")
-book.view_contact()
-book.update_contact("Alice", phone="54321")
-book.delete_contact("Alice")
+1. Add contact
+2. Edit contact
+3. View contacts
+4. Delete contact
+5. Quit
+```
 
-## 🐍 Requirements
+When adding a contact, the user enters:
 
-•	Python 3.7 or higher
+```text
+Enter Contact name:
+Enter Contact phone:
+Enter Contact email:
+Enter Contact address:
+```
 
-•	No external dependencies required (defaultdict is from the standard library)
+When editing a contact, the user can leave a field blank to keep the existing information.
 
-## 📄 License
+## Requirements
 
-This project is licensed under the MIT License. Feel free to use, modify, or distribute it for educational or personal purposes.
+- Python 3.x
+
+No external packages are required.
+
+## Installation and Usage
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mahnazghssm/Contact-Book.git
+cd Contact-Book
+```
+
+Run the application:
+
+```bash
+python src/main.py
+```
+
+## What I Practiced
+
+- Python classes and objects
+- Dictionaries
+- CRUD operations
+- Functions and methods
+- User input
+- Basic project structure
