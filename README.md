@@ -47,12 +47,12 @@ Each contact contains a phone number, email, and address, and is stored using th
 
 The class includes four main methods:
 
-| Method | Description |
-|---|---|
-| `add_contact()` | Adds a new contact |
-| `view_contacts()` | Displays all contacts |
-| `edit_contact()` | Updates contact information |
-| `delete_contact()` | Deletes a contact |
+| Method             | Description                 |
+| ------------------ | --------------------------- |
+| `add_contact()`    | Adds a new contact          |
+| `view_contacts()`  | Displays all contacts       |
+| `edit_contact()`   | Updates contact information |
+| `delete_contact()` | Deletes a contact           |
 
 ## User Interface
 
@@ -108,3 +108,7 @@ python src/main.py
 - Functions and methods
 - User input
 - Basic project structure
+
+## License
+
+This project is licensed under the MIT License.
